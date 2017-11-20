@@ -1,2 +1,5 @@
 gdax
 argparse
+gdax
+matplotlib
+numpy
