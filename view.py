@@ -80,15 +80,15 @@ def main():
 
         # Set up plots.
         plt.ion()
-        Y_MARGIN = 0.5
+        Y_MARGIN = 0.1
         fig = plt.figure()
         ax = fig.add_subplot(111)
         ax.axhline(y=0, color="r", linestyle="--")
         line, = ax.plot(client.history)
-        txt_x = 60
-        txt_y = 1
-        gain_label = ax.text(txt_x, txt_y, "Current Gain")
-        gain_text = ax.text(txt_x + 20, txt_y, "")
+        txt_x = 0
+        txt_y = 0
+        gain_text = ax.text(txt_x + 40, txt_y, "")
+        gain_text.set_size(48)
         ax.set_ylim(-0.1, 2)
         ax.set_ylabel("Percent Gain")
         ax.set_xlabel("Trade History")
@@ -105,7 +105,6 @@ def main():
             percent_change_s = "{:.5f}%".format(percent_change)
 
             line.set_ydata(pt)
-            gain_label.set_y(percent_change - Y_MARGIN * 0.95)
             gain_text.set_y(percent_change - Y_MARGIN * 0.95)
             gain_text.set_text(percent_change_s)
             fig.canvas.draw()
