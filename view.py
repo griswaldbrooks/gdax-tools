@@ -25,7 +25,7 @@ class wsClient(gdax.WebsocketClient):
         self.url = "wss://ws-feed.gdax.com/"
         self.products = ["BTC-USD"]
         self.previous_trade = 0
-        self.buy_price = 7899.97
+        self.buy_price = 8464.99
         self.history = np.zeros(100)
 
     def on_message(self, msg):
@@ -54,7 +54,8 @@ class wsClient(gdax.WebsocketClient):
                 price_change_s = "${:.3f}".format(price_change)
                 percent_change_s = "{:.5f}%".format(percent_change * 100)
                 buy_percent_s = "{:.5f}%".format(buy_percent * 100)
-                print(color + "${:.3f} {} {} {}".format(
+                print(color + "{} ${:.3f} {} {} {}".format(
+                    time.time(),
                     trade_price,
                     price_change_s,
                     percent_change_s,
@@ -87,7 +88,9 @@ def main():
         line, = ax.plot(client.history)
         txt_x = 0
         txt_y = 0
+#        gain_label = ax.text(txt_x, txt_y, "Current Gain")
         gain_text = ax.text(txt_x + 40, txt_y, "")
+#        gain_label.set_size(48)
         gain_text.set_size(48)
         ax.set_ylim(-0.1, 2)
         ax.set_ylabel("Percent Gain")
@@ -105,6 +108,7 @@ def main():
             percent_change_s = "{:.5f}%".format(percent_change)
 
             line.set_ydata(pt)
+#           gain_label.set_y(percent_change - Y_MARGIN * 0.95)
             gain_text.set_y(percent_change - Y_MARGIN * 0.95)
             gain_text.set_text(percent_change_s)
             fig.canvas.draw()
