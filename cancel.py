@@ -12,7 +12,7 @@ def main():
     Cancels all bitcoin orders.
     '''
     client = gdax.AuthenticatedClient(API_KEY, API_SECRET, API_PASS)
-    r = client.cancel_all(product='BTC-USD')
+    r = client.cancel_all(product='LTC-USD')
     print(json.dumps(r))
 
 

@@ -25,7 +25,7 @@ class wsClient(gdax.WebsocketClient):
         self.url = "wss://ws-feed.gdax.com/"
         self.products = ["BTC-USD"]
         self.previous_trade = 0
-        self.buy_price = 9576.00
+        self.buy_price = 11310.043
         self.history = np.zeros(100)
 
     def on_message(self, msg):
